@@ -1,5 +1,5 @@
-public with sharing class SurveyQuestionOption {
-    
+public with sharing class SurveyQuestionOption extends BaseModel {
+
     public static Finder find = new Finder('Survey_Question_Option__c');
 
     public SurveyQuestionOption() {
@@ -24,11 +24,9 @@ public with sharing class SurveyQuestionOption {
         mObj.put('Option__c', option);
     }
 
-
-    
     public static List<SurveyQuestionOption> decorate(List<sObject> questions) {
         List<SurveyQuestionOption> result = new List<SurveyQuestionOption>();
-        for (sObject q : questions) {
+        for (Survey_Question_Option__c q : (List<Survey_Question_Option__c>)questions) {
             result.add(new SurveyQuestionOption(q));
         }
         return result;

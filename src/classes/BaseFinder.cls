@@ -32,6 +32,10 @@ public abstract class BaseFinder {
         return 'select ' + getFields() + ' from ' + mSObjectName + ' ';
     }
 
+    protected List<sObject> getAll() {
+        return Database.query(getSelect());
+    }
+
     protected List<SObject> getSelectWhere(String field, String whereClause) {
         return Database.query(getSelect() + 'where ' + field + ' =: whereClause');
     }

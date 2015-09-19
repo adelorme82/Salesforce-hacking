@@ -1,5 +1,5 @@
-public with sharing class SurveyQuestion {
-    
+public with sharing class SurveyQuestion extends BaseModel {
+
     public static Finder find = new Finder('Survey_Question__c');
 
     public static final String TYPE_CHECKBOX = 'Checkbox';
@@ -34,7 +34,6 @@ public with sharing class SurveyQuestion {
     public void setType(String type) {
         mObj.put('Type__c', type);
     }
-    
 
     public Boolean getIsCheckbox() {
         if (mIsCheckbox == null) {
@@ -62,7 +61,7 @@ public with sharing class SurveyQuestion {
         mIsText     = false;
         mIsPicklist = false;
 
-        String type == getType();
+        String type = getType();
         if (type == TYPE_CHECKBOX) {
             mIsCheckbox = true;
         }
@@ -76,7 +75,7 @@ public with sharing class SurveyQuestion {
     }
     public static List<SurveyQuestion> decorate(List<sObject> questions) {
         List<SurveyQuestion> result = new List<SurveyQuestion>();
-        for (sObject q : questions) {
+        for (Survey_Question__c q : (List<Survey_Question__c>)questions) {
             result.add(new SurveyQuestion(q));
         }
         return result;
@@ -91,7 +90,7 @@ public with sharing class SurveyQuestion {
         }
 
         public List<SurveyQuestion> all() {
-            return decorate(getSelect());
+            return decorate(getAll());
         }
     }
 }

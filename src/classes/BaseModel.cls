@@ -51,7 +51,7 @@ public virtual class BaseModel {
         List<sObject> updateList = new List<sObject>();
         List<sObject> insertList = new List<sObject>();
         for (BaseModel tempModel : modelList) {
-            if (tempModel != null && !tempModel.isPlaceHolder) {
+            if (tempModel != null) {
                 if(tempModel.getId() != null) {
                     updateList.add(tempModel.getObj());
                 } else {

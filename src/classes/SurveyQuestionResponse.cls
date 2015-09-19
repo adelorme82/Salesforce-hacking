@@ -1,5 +1,5 @@
-public with sharing class SurveyQuestionResponse {
-    
+public with sharing class SurveyQuestionResponse extends BaseModel {
+
     public static Finder find = new Finder('Survey_Question_Response__c');
 
     private SurveyQuestion mQuestion;
@@ -30,7 +30,7 @@ public with sharing class SurveyQuestionResponse {
     public void setBooleanResponse(Boolean booleanResponse) {
         mObj.put('Boolean_Response__c', booleanResponse);
     }
-    
+
     public String getTextResponse() {
         return (String)mObj.get('Text_Response__c');
     }
@@ -40,7 +40,7 @@ public with sharing class SurveyQuestionResponse {
 
     public static List<SurveyQuestionResponse> decorate(List<sObject> questions) {
         List<SurveyQuestionResponse> result = new List<SurveyQuestionResponse>();
-        for (sObject q : questions) {
+        for (Survey_Question_Response__c q : (List<Survey_Question_Response__c>)questions) {
             result.add(new SurveyQuestionResponse(q));
         }
         return result;
